@@ -15,7 +15,7 @@ class Item(models.Model):
     finalidade = models.CharField(max_length=500, blank=True, null=True)
     material = models.CharField(max_length=80, blank=True, null=True)
     comentarios = models.CharField(max_length=500, blank=True, null=True)
-    updated_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(null=True, auto_now_add=True)
     updated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+", null=True)
 
     def __str__(self):
