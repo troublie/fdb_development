@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.urls import resolve
 from django.test import TestCase
-from .views import home, consulta_pn
+from .views import home, consulta_pn, item_detalhes
 from .models import Item
 
 
@@ -28,3 +28,17 @@ class ItemListTests(TestCase):
     def test_itemList_url_resolves_itemList_view(self):
         view = resolve('/consulta_pn/')
         self.assertEquals(view.func, consulta_pn)
+
+    def test_item_detalhes_view_success_stauts_code(self):
+        url = reverse_lazy('item_detalhes', kwargs={"pk": 1})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    def test_item_detalhes_view_not_found_status_code(self):
+        url = reverse_lazy('item_detalhes', kwargs={"pk": 99})
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 404)
+
+    def test_item_list_url_resolves_item_detalhes_view(self):
+        view = resolve('/consulta_pn/item_detalhes/1/')
+        self.assertEquals(view.func, item_detalhes)

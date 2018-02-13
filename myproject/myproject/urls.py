@@ -22,6 +22,7 @@ from fuji import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^consulta_pn/item_detalhes/(?P<pk>\d+)/$', views.item_detalhes, name='item_detalhes'),
     url(r'^consulta_pn/', views.consulta_pn, name='consulta_pn'),
     url(r'^admin/', admin.site.urls),
 ]
