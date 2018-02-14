@@ -24,7 +24,7 @@
         {% for item in items %}
         <tr>
             <td>
-                {{ item.pn }}
+                <a href="{% url 'item_detalhes' item.pk %}">{{ item.pn }}</a>
                 <small class="text-muted d-block">{{ item.rating }}</small>
             </td>
             <td>{{ item.partName }}</td>
