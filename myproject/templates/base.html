@@ -4,11 +4,13 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}NP 0.1{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-light" style="background-color: #42a4f4;">
     <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">Fuji do Brasil</a>
     </div>
