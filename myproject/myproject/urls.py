@@ -15,13 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from contas import views as contas_views
+from accounts import views as accounts_views
 
 from fuji import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^cadastrar/$', contas_views.cadastrar, name='cadastrar'),
+    url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^consulta_pn/item_detalhes/(?P<pk>\d+)/$', views.item_detalhes, name='item_detalhes'),
     url(r'^consulta_pn/', views.consulta_pn, name='consulta_pn'),
     url(r'^admin/', admin.site.urls),

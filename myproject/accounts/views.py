@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login
 
 
-def cadastrar(request):
+def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -12,4 +12,4 @@ def cadastrar(request):
             return redirect('home')
     else:
         form = UserCreationForm()
-    return render(request, 'cadastrar.html', {'form': form})
+    return render(request, 'signup.html', {'form': form})

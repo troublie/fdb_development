@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fuji',
-    'contas',
+    'accounts',
     'widget_tweaks',
 ]
 
