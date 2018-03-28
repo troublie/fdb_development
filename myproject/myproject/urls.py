@@ -16,12 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from accounts import views as accounts_views
+from django.contrib.auth import views as auth_views
 
 from fuji import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
+    url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^consulta_pn/item_detalhes/(?P<pk>\d+)/$', views.item_detalhes, name='item_detalhes'),
     url(r'^consulta_pn/', views.consulta_pn, name='consulta_pn'),
     url(r'^admin/', admin.site.urls),
