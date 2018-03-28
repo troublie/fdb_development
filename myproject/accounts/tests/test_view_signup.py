@@ -1,8 +1,9 @@
 from django.urls import resolve, reverse_lazy
 from django.test import TestCase
-from .views import signup
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from ..forms import SignUpForm
+from ..views import signup
 
 
 class SignUpTests(TestCase):
