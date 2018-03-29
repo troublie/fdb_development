@@ -1,8 +1,10 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from .models import Item
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def home(request):
     return render(request, "home.html")
 
