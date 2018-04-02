@@ -7,6 +7,14 @@ from ..models import Item
 
 class HomeTests(TestCase):
     def test_home_view_status_code(self):
+        url = reverse_lazy('signup')
+        data = {
+            'username': 'john',
+            'email': 'john@gmail.com',
+            'password1': 'abcdef123456',
+            'password2': 'abcdef123456'
+        }
+        self.response = self.client.post(url, data)
         url = reverse_lazy('home')
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
@@ -16,6 +24,14 @@ class HomeTests(TestCase):
         self.assertEquals(view.func, home)
 
     def test_home_view_contains_link_to_consulta_pn_page(self):
+        url = reverse_lazy('signup')
+        data = {
+            'username': 'john',
+            'email': 'john@gmail.com',
+            'password1': 'abcdef123456',
+            'password2': 'abcdef123456'
+        }
+        self.response = self.client.post(url, data)
         consulta_pn_url = reverse_lazy('consulta_pn')
         url = reverse_lazy('home')
         response = self.client.get(url)
