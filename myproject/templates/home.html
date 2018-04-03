@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% block breadcrumb %}
-       <a href="{% url 'home' %}"><li class="breadcrumb-item active">Home</li></a>
+<a href="{% url 'home' %}">
+    <li class="breadcrumb-item active">Home</li>
+</a>
 {% endblock %}
 
 {% block content %}
 <p><a href="{% url 'consulta_pn' %}">Consulta part numbers</a></p>
+<p><a href="{% url 'cadastro_pedido' %}">Cadastro de PO</a> </p>
 {% endblock %}

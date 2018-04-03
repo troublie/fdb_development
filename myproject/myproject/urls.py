@@ -17,7 +17,6 @@ from django.conf.urls import url
 from django.contrib import admin
 from accounts import views as accounts_views
 from django.contrib.auth import views as auth_views
-
 from fuji import views
 
 urlpatterns = [
@@ -28,6 +27,7 @@ urlpatterns = [
     url(r'^consulta_pn/item_detalhes/(?P<pk>\d+)/$', views.item_detalhes, name='item_detalhes'),
     url(r'^consulta_pn/', views.consulta_pn, name='consulta_pn'),
     url(r'^admin/', admin.site.urls),
+    url(r'^cadastro_pedido/$', views.cadastro_pedido, name='cadastro_pedido'),
 
     url(r'^reset/$',
         auth_views.PasswordResetView.as_view(
