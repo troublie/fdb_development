@@ -94,5 +94,8 @@ class Order(models.Model):
     updated_by = models.ForeignKey(User, null=True, on_delete=models.PROTECT, related_name="+")
     prioridade = models.CharField(max_length=10, null=False, blank=False)
 
+    def __str__(self):
+        return self.number
+
 
 
