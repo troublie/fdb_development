@@ -3,7 +3,7 @@ from django.urls import resolve
 from django.test import TestCase
 
 from ..forms import NewOrderForm
-from ..views import home, consulta_pn, item_detalhes
+from ..views import home, consulta_pn, item_detalhes, cadastro_pedido
 from ..models import Item
 
 
@@ -102,7 +102,7 @@ class CadastroPedidoTest(TestCase):
     def test_cadastro_pedido_view_contains_link_back_to_homepage(self):
         self.assertContains(self.response, 'href="{0}"'.format(self.url))
 
-    def test(self):
+    def test_cadastro_pedido_form(self):
         form = NewOrderForm()
         expected = ['customer', 'received_date', 'fornecedor', 'date_sent_vendor',
                   'number', 'proforma', 'invoice', 'instrucoes', 'embarcado_finalizado_em',
@@ -111,3 +111,10 @@ class CadastroPedidoTest(TestCase):
                   ]
         actual = list(form.fields)
         self.assertSequenceEqual(expected, actual)
+
+    def test_cadastro_pedido_page_view_success_status_code(self):
+        self.assertEquals(self.response.status_code, 200)
+
+    def test_cadastro_pedido_url_resolves_cadastro_pedido_view(self):
+        view = resolve('/cadastro_pedido/')
+        self.assertEquals(view.func, cadastro_pedido)
