@@ -8,7 +8,6 @@ from ..models import Item
 
 
 class HomeTests(TestCase):
-
     def setUp(self):
         url = reverse_lazy('signup')
         data = {
@@ -84,7 +83,8 @@ class ItemDetalhesTest(TestCase):
         url = reverse_lazy('consulta_pn')
         self.assertContains(self.response, 'href="{0}'.format(url))
 
-class CadastroPedidoTest(TestCase):
+
+class CadastroPedidoViewTest(TestCase):
     def setUp(self):
         url = reverse_lazy('signup')
         data = {
@@ -105,10 +105,10 @@ class CadastroPedidoTest(TestCase):
     def test_cadastro_pedido_form(self):
         form = NewOrderForm()
         expected = ['customer', 'received_date', 'fornecedor', 'date_sent_vendor',
-                  'number', 'proforma', 'invoice', 'instrucoes', 'embarcado_finalizado_em',
-                  'awb', 'tracking', 'moeda', 'amount_total', 'responsavel_fdb', 'tipo_embarque',
-                  'termo_pagto', 'vencimento', 'pago', 'prioridade'
-                  ]
+                    'number', 'proforma', 'invoice', 'instrucoes', 'embarcado_finalizado_em',
+                    'awb', 'tracking', 'moeda', 'amount_total', 'responsavel_fdb', 'tipo_embarque',
+                    'termo_pagto', 'vencimento', 'pago', 'prioridade'
+                    ]
         actual = list(form.fields)
         self.assertSequenceEqual(expected, actual)
 
@@ -118,3 +118,33 @@ class CadastroPedidoTest(TestCase):
     def test_cadastro_pedido_url_resolves_cadastro_pedido_view(self):
         view = resolve('/cadastro_pedido/')
         self.assertEquals(view.func, cadastro_pedido)
+
+class CadatroPedidoForm(TestCase):
+    def setUp(self):
+        url = reverse_lazy('signup')
+        data = {
+            'username': 'john',
+            'email': 'john@gmail.com',
+            'password1': 'abcdef123456',
+            'password2': 'abcdef123456'
+        }
+        self.response = self.client.post(url, data)
+        #self.url = reverse_lazy('home')
+        #self.response = self.client.get(url)
+        #self.cadastro_pedido_url = reverse_lazy('cadastro_pedido')
+        #self.response = self.client.get(self.cadastro_pedido_url)
+        self.url = reverse_lazy('cadastro_pedido')
+        data = {
+            'received date': 'teste'
+        }
+        self.response = self.client.post(self.url, data)
+
+    def test_cadastro_pedido_incorreto(self):
+        url = reverse_lazy('cadastro_pedido')
+        self.assertEquals(self.response.status_code, 200)
+        view = resolve('/cadastro_pedido/')
+        self.assertEquals(view.func, cadastro_pedido)
+
+    def test_form_errors(self):
+        form = self.response.context.get('form')
+        self.assertTrue(form.errors)
