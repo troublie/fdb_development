@@ -1,6 +1,8 @@
 from django.urls import reverse_lazy
 from django.urls import resolve
 from django.test import TestCase
+
+from ..forms import NewOrderForm
 from ..views import home, consulta_pn, item_detalhes
 from ..models import Item
 
@@ -29,6 +31,10 @@ class HomeTests(TestCase):
     def test_home_view_contains_link_to_consulta_pn_page(self):
         consulta_pn_url = reverse_lazy('consulta_pn')
         self.assertContains(self.response, 'href="{0}"'.format(consulta_pn_url))
+
+    def test_home_view_contains_link_to_cadastro_po_page(self):
+        cadastro_pedido_url = reverse_lazy('cadastro_pedido')
+        self.assertContains(self.response, 'href="{0}"'.format(cadastro_pedido_url))
 
 
 class ItemListTests(TestCase):
@@ -71,10 +77,37 @@ class ItemDetalhesTest(TestCase):
 
     def test_item_detalhes_view_contains_link_back_to_homepage(self):
         item_detalhes_url = reverse_lazy('item_detalhes', kwargs={'pk': 1})
-        url = reverse_lazy('home')
-        self.assertContains(self.response, 'href="{0}"'.format(url))
+        self.assertContains(self.response, 'href="{0}"'.format(item_detalhes_url))
 
     def test_item_detalhes_view_contains_link_back_to_consulta_pn(self):
         item_detalhes_url = reverse_lazy('item_detalhes', kwargs={'pk': 1})
         url = reverse_lazy('consulta_pn')
         self.assertContains(self.response, 'href="{0}'.format(url))
+
+class CadastroPedidoTest(TestCase):
+    def setUp(self):
+        url = reverse_lazy('signup')
+        data = {
+            'username': 'john',
+            'email': 'john@gmail.com',
+            'password1': 'abcdef123456',
+            'password2': 'abcdef123456'
+        }
+        self.response = self.client.post(url, data)
+        self.url = reverse_lazy('home')
+        self.response = self.client.get(url)
+        self.cadastro_pedido_url = reverse_lazy('cadastro_pedido')
+        self.response = self.client.get(self.cadastro_pedido_url)
+
+    def test_cadastro_pedido_view_contains_link_back_to_homepage(self):
+        self.assertContains(self.response, 'href="{0}"'.format(self.url))
+
+    def test(self):
+        form = NewOrderForm()
+        expected = ['customer', 'received_date', 'fornecedor', 'date_sent_vendor',
+                  'number', 'proforma', 'invoice', 'instrucoes', 'embarcado_finalizado_em',
+                  'awb', 'tracking', 'moeda', 'amount_total', 'responsavel_fdb', 'tipo_embarque',
+                  'termo_pagto', 'vencimento', 'pago', 'prioridade'
+                  ]
+        actual = list(form.fields)
+        self.assertSequenceEqual(expected, actual)
