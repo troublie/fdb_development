@@ -7,7 +7,9 @@
 {% block content %}
 <form method="post" novalidate>
     {% csrf_token %}
+    <div class="col-md-4">
     {% include 'includes/form.html' %}
     <button type="submit" class="btn btn-success">Cadastrar</button>
+    </div>
 </form>
 {% endblock %}
