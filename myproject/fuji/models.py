@@ -71,16 +71,16 @@ class Customer(models.Model):
         return self.nome
 
 class Order(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True, null=True, verbose_name='Criado em')
+    created_at = models.DateField(auto_now_add=True, null=True, verbose_name='Criado em')
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT, related_name="orders", blank=False, verbose_name='Cliente')
-    received_date = models.DateTimeField(blank=True, null=True, verbose_name='Data recebida')
+    received_date = models.DateField(blank=True, null=True, verbose_name='Data recebida')
     fornecedor = models.ForeignKey(Fornecedor, on_delete=models.PROTECT, related_name="orders", verbose_name='Fornecedor')
-    date_sent_vendor = models.DateTimeField(blank=True, null=True, verbose_name='Data de envio ao fornecedor')
+    date_sent_vendor = models.DateField(blank=True, null=True, verbose_name='Data de envio ao fornecedor')
     number = models.CharField(max_length=30, unique=True, blank=False,verbose_name='Número')
     proforma = models.CharField(max_length=30, blank=True, null=True, verbose_name='Proforma Invoice')
     invoice = models.CharField(max_length=30, blank=True, null=True,verbose_name='Invoice')
     instrucoes = models.CharField(max_length=30, blank=True, null=True, verbose_name='Instruções de embarque')
-    embarcado_finalizado_em = models.DateTimeField(blank=True, null=True, verbose_name='Embarcado/Finalizado em')
+    embarcado_finalizado_em = models.DateField(blank=True, null=True, verbose_name='Embarcado/Finalizado em')
     awb = models.CharField(max_length=30, blank=True, null=True, verbose_name='AWB')
     tracking = models.CharField(max_length=50, blank=True, null=True, verbose_name='Tracking')
     moeda = models.ForeignKey(Moeda, on_delete=models.PROTECT, related_name="orders", blank=False, null=False, verbose_name='Moeda')
@@ -88,9 +88,9 @@ class Order(models.Model):
     responsavel_fdb = models.ForeignKey(User, null=True, on_delete=models.PROTECT, related_name="orders", verbose_name='Responsável')
     tipo_embarque = models.ForeignKey(Tipo_emb, null=False, on_delete=models.PROTECT, blank=False, related_name="orders", verbose_name='Tipo')
     termo_pagto = models.ForeignKey(Termo, null=False, on_delete=models.PROTECT, blank=False, related_name="orders", verbose_name='Termo de Pagamento')
-    vencimento = models.DateTimeField(blank=True, null=True, verbose_name='Vencimento')
+    vencimento = models.DateField(blank=True, null=True, verbose_name='Vencimento')
     pago = models.NullBooleanField(blank=True, verbose_name='Pago?')
-    last_update = models.DateTimeField(auto_now_add=True, verbose_name='Última atualização em')
+    last_update = models.DateField(auto_now_add=True, verbose_name='Última atualização em')
     updated_by = models.ForeignKey(User, null=True, on_delete=models.PROTECT, related_name="+", verbose_name='Última atualização por')
     prioridade = models.ForeignKey(Prioridade, null=False, on_delete=models.PROTECT, blank=False, related_name="orders", verbose_name='Prioridade')
 
