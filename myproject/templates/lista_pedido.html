@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block breadcrumb %}
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active">Consulta Pedidos</li>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th>NÚMERO</th>
+            <th>CLIENTE</th>
+            <th>DT RECEBIDO</th>
+            <th>FORNECEDOR</th>
+            <th>DT ENV. FORN.</th>
+            <th>CRIADO EM</th>
+            <th>LAST UPDATED
+            <th>UPDATED BY</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.number }}</td>
+            <td>{{ order.customer }}</td>
+            <td>{{ order.received_date|date:"d/m/y" }}</td>
+            <td>{{ order.fornecedor }}</td>
+            <td>{{ order.date_sent_vendor|date:"d/m/y" }}</td>
+            <td>{{ order.created_at|date:"d/m/y" }}</td>
+            <td>{{ order.last_update|date:"d/m/y" }}</td>
+            <td>{{ order.updated_by }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

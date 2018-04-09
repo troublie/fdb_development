@@ -4,8 +4,8 @@ from django.urls import resolve
 from django.test import TestCase
 
 from ..forms import NewOrderForm
-from ..views import home, consulta_pn, item_detalhes, cadastro_pedido
-from ..models import Item, Customer, Moeda, Prioridade, Tipo_emb, Fornecedor, Termo
+from ..views import home, consulta_pn, item_detalhes, cadastro_pedido, lista_pedido
+from ..models import Item, Customer, Moeda, Prioridade, Tipo_emb, Fornecedor, Termo, Order
 
 
 class HomeTests(TestCase):

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Item
+from .models import Item, Order
 from .forms import NewOrderForm
 from django.contrib.auth.decorators import login_required
 
@@ -36,3 +36,7 @@ def cadastro_pedido(request):
     else:
         form = NewOrderForm()
     return render(request, 'cadastro_pedido.html', {'form': form})
+
+def lista_pedido(request):
+    orders = Order.objects.all()
+    return render(request, "lista_pedido.html", {'orders': orders})
