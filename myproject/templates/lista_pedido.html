@@ -21,7 +21,7 @@
         <tbody>
         {% for order in orders %}
         <tr>
-            <td>{{ order.number }}</td>
+            <td><a href="{% url 'pedido_detalhes' order.pk %}">{{ order.number }}</a></td>
             <td>{{ order.customer }}</td>
             <td>{{ order.received_date|date:"d/m/y" }}</td>
             <td>{{ order.fornecedor }}</td>

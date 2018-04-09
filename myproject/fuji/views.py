@@ -40,3 +40,7 @@ def cadastro_pedido(request):
 def lista_pedido(request):
     orders = Order.objects.all()
     return render(request, "lista_pedido.html", {'orders': orders})
+
+def pedido_detalhes(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    return render(request, 'pedido_detalhes.html', {'order': order})

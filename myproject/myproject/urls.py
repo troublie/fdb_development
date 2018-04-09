@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^consulta_pn/', views.consulta_pn, name='consulta_pn'),
     url(r'^admin/', admin.site.urls),
     url(r'^cadastro_pedido/$', views.cadastro_pedido, name='cadastro_pedido'),
+    url(r'^lista_pedido/pedido_detalhes/(?P<pk>\d+)/$', views.pedido_detalhes, name='pedido_detalhes'),
     url(r'^lista_pedido/$', views.lista_pedido, name='lista_pedido'),
 
     url(r'^reset/$',
