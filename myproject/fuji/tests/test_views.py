@@ -183,6 +183,25 @@ class CadastroPedidoSucesso(TestCase):
 
 class PedidoListViewTest(TestCase):
     def setUp(self):
+        self.moeda = Moeda.objects.create(simbolo="USD", descricao="DOLAR")
+        self.moeda = Moeda.objects.first()
+        self.prioridade = Prioridade.objects.create(tipo="Alta")
+        self.prioridade = Prioridade.objects.first()
+        self.tipo_emb = Tipo_emb.objects.create(descricao="Spareparts")
+        self.tipo_emb = Tipo_emb.objects.first()
+        self.fornecedor = Fornecedor.objects.create(nome="Sojitz", endreco="Teste", email_contato="teste@gmail.com",
+                                                    nome_contato="Joao")
+        self.fornecedor = Fornecedor.objects.first()
+        self.termo = Termo.objects.create(dias="30")
+        self.termo = Termo.objects.first()
+        self.customer = Customer.objects.create(nome="Jabil", endreco="Teste", email_contato="teste2@gmail.com",
+                                                nome_contato="Joao")
+        self.customer = Customer.objects.first()
+        self.user = User.objects.create_user(username='john', email='john@doe.com', password='old_password')
+        self.user = User.objects.first()
+        Order.objects.create(customer=self.customer, fornecedor=self.fornecedor, number='123', moeda=self.moeda,
+                             amount_total='1200', responsavel_fdb=self.user, tipo_embarque=self.tipo_emb,
+                             termo_pagto=self.termo, prioridade=self.prioridade)
         url = reverse_lazy('lista_pedido')
         self.response = self.client.get(url)
 
@@ -196,3 +215,6 @@ class PedidoListViewTest(TestCase):
     def test_lista_pedido_url_resolve_lista_pedido_view(self):
         view = resolve('/lista_pedido/')
         self.assertEquals(view.func, lista_pedido)
+
+    def test_lista_pedido_view_show_ok_results_from_db(self):
+        self.assertContains(self.response, '<td>Jabil')
