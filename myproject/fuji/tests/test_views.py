@@ -216,5 +216,5 @@ class PedidoListViewTest(TestCase):
         view = resolve('/lista_pedido/')
         self.assertEquals(view.func, lista_pedido)
 
-    def test_lista_pedido_view_show_ok_results_from_db(self):
-        self.assertContains(self.response, '<td>Jabil')
+    def test_lista_pedido_view_show_ok_results_from_db_by_columns(self):
+        self.assertContains(self.response, '<td>', 8)

@@ -38,8 +38,8 @@
       <file leaf-file-name="test_views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myproject/fuji/tests/test_views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="206" column="0" lean-forward="true" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
+            <state relative-caret-position="321">
+              <caret line="219" column="53" lean-forward="true" selection-start-line="219" selection-start-column="53" selection-end-line="219" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -428,8 +428,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myproject/fuji/tests/test_views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="206" column="0" lean-forward="true" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
+        <state relative-caret-position="321">
+          <caret line="219" column="53" lean-forward="true" selection-start-line="219" selection-start-column="53" selection-end-line="219" selection-end-column="53" />
           <folding />
         </state>
       </provider>
