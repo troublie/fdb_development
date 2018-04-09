@@ -177,3 +177,4 @@ class CadastroPedidoSucesso(TestCase):
         url = reverse_lazy('cadastro_pedido')
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
+        self.assertContains(response, 'form-group', 19)
