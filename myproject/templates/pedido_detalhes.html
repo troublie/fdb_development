@@ -10,7 +10,7 @@
 {% block content %}
 <div class="row">
     <div class="col-lg-6 col-md-8 col-sm-10">
-        <table class ="table">
+        <table class="table">
             <thead class="thead-light">
             <tr>
                 <th>Pedido {{ order.number }}</th>
@@ -19,25 +19,91 @@
             </thead>
             <tbody>
             <tr>
-                <td>Cliente:</td>
+                <td>{% get_verbose_field_name order "customer" %}:</td>
                 <td>{{ order.customer }}</td>
             </tr>
             <tr>
-                <td>Criado em:</td>
+                <td>{% get_verbose_field_name order "created_at" %}:</td>
                 <td>{{ order.created_at }}</td>
             </tr>
             <tr>
-                <td>Recebido em:</td>
+                <td>{% get_verbose_field_name order "received_date" %}:</td>
                 <td>{{ order.received_date }}</td>
             </tr>
             <tr>
-                <td>Fornecedor:</td>
+                <td>{% get_verbose_field_name order "fornecedor" %}:</td>
                 <td>{{ order.fornecedor }}</td>
             </tr>
             <tr>
-                <td>Numero:</td>
-                <td>{{ order.number }}</td>
+                <td>{% get_verbose_field_name order "date_sent_vendor" %}:</td>
+                <td>{{ order.date_sent_vendor }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "proforma" %}:</td>
+                <td>{{ order.proforma }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "invoice" %}:</td>
+                <td>{{ order.invoice }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "instrucoes" %}:</td>
+                <td>{{ order.instrucoes }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "embarcado_finalizado_em" %}:</td>
+                <td>{{ order.embarcado_finalizado_em }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "awb" %}:</td>
+                <td>{{ order.awb }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "tracking" %}:</td>
+                <td>{{ order.tracking }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "moeda" %}:</td>
+                <td>{{ order.moeda }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "amount_total" %}:</td>
+                <td>{{ order.amount_total }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "responsavel_fdb" %}:</td>
+                <td>{{ order.responsavel_fdb }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "tipo_embarque" %}:</td>
+                <td>{{ order.tipo_embarque }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "termo_pagto" %}:</td>
+                <td>{{ order.termo_pagto }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "vencimento" %}:</td>
+                <td>{{ order.vencimento }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "pago" %}:</td>
+                <td>{{ order.pago }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "last_update" %}:</td>
+                <td>{{ order.last_update }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "updated_by" %}:</td>
+                <td>{{ order.updated_by }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name order "prioridade" %}:</td>
+                <td>{{ order.prioridade }}</td>
             </tr>
             </tbody>
         </table>
+    </div>
+</div>
 {% endblock content %}
