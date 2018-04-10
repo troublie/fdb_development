@@ -3,7 +3,7 @@
 __pycache__
 .DS_Store
 venv
-\myproject\db.sqlite3
+db.sqlite3
 .idea
 \.idea
 \.idea/*
