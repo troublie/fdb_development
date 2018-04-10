@@ -44,3 +44,4 @@ def lista_pedido(request):
 def pedido_detalhes(request, pk):
     order = get_object_or_404(Order, pk=pk)
     return render(request, 'pedido_detalhes.html', {'order': order})
+

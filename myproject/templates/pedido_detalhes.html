@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
+{% block title %} Pedido {{order.number }} {%endblock title %}
 {% block breadcrumb %}
 <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
 <li class="breadcrumb-item"><a href="{% url 'lista_pedido' %}">Lista de Pedidos</a></li>
-<li class="breadcrumb-item active">{{ order.number }} detalhado</li>
+<li class="breadcrumb-item active">Pedido {{ order.number }} detalhado</li>
 {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-10">

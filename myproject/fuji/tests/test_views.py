@@ -218,3 +218,6 @@ class PedidoListViewTest(TestCase):
 
     def test_lista_pedido_view_show_ok_results_from_db_by_columns(self):
         self.assertContains(self.response, '<td>', 8)
+
+    def test_lista_pedido_view_contains_link_to_order(self):
+        self.assertContains(self.response, 'a href="/lista_pedido/pedido_detalhes/1/"')
