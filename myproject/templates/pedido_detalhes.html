@@ -87,8 +87,8 @@
                 <td>{{ order.vencimento }}</td>
             </tr>
             <tr>
-                <td>{% get_verbose_field_name order "pago" %}:</td>
-                <td>{{ order.pago }}</td>
+                <td>{% get_verbose_field_name order "pago" %}</td>
+                <td>{{ order.pago|yesno:"sim,não,desconhecido" }}</td>
             </tr>
             <tr>
                 <td>{% get_verbose_field_name order "last_update" %}:</td>
