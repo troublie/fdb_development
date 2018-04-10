@@ -6,10 +6,8 @@ from .forms import NewOrderForm
 from django.contrib.auth.decorators import login_required
 
 
-
 def home(request):
     return render(request, "home.html")
-
 
 
 def consulta_pn(request):
@@ -17,11 +15,9 @@ def consulta_pn(request):
     return render(request, "consulta_pn.html", {'items': items})
 
 
-
 def item_detalhes(request, pk):
     item = get_object_or_404(Item, pk=pk)
     return render(request, 'item_detalhes.html', {'item': item})
-
 
 
 def cadastro_pedido(request):
@@ -37,11 +33,12 @@ def cadastro_pedido(request):
         form = NewOrderForm()
     return render(request, 'cadastro_pedido.html', {'form': form})
 
+
 def lista_pedido(request):
     orders = Order.objects.all()
     return render(request, "lista_pedido.html", {'orders': orders})
 
+
 def pedido_detalhes(request, pk):
     order = get_object_or_404(Order, pk=pk)
     return render(request, 'pedido_detalhes.html', {'order': order})
-

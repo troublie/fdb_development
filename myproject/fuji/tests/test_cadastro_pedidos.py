@@ -102,3 +102,14 @@ class CadastroPedidoSucesso(TestCase):
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, 'form-group', 19)
+
+
+class LoginRequiredCadastroPedido(TestCase):
+    def setUp(self):
+        self.url = reverse_lazy('cadastro_pedido')
+        self.response = self.client.get(self.url)
+
+        # loginReq
+        # def test_redirection(self):
+        # login_url = reverse_lazy('login')
+        # self.assertRedirects(self.response, '{login_url}?next={url}'.format(login_url=login_url, url=self.url))
