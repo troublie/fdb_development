@@ -19,7 +19,7 @@ def item_detalhes(request, pk):
     item = get_object_or_404(Item, pk=pk)
     return render(request, 'item_detalhes.html', {'item': item})
 
-
+@login_required
 def cadastro_pedido(request):
     user = User.objects.first()  # TODO: get the currently logged in user
     if request.method == 'POST':

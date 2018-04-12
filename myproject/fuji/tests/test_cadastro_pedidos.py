@@ -33,12 +33,6 @@ class CadastroPedidoViewTest(TestCase):
         actual = list(form.fields)
         self.assertSequenceEqual(expected, actual)
 
-
-class CadatroPedidoTest(TestCase):
-    def setUp(self):
-        url = reverse_lazy('cadastro_pedido')
-        self.response = self.client.get(url)
-
     def test_cadastro_pedido_status_code(self):
         self.assertEquals(self.response.status_code, 200)
 
@@ -63,6 +57,18 @@ class CadatroPedidoTest(TestCase):
 
 class CadastroPedidoSucesso(TestCase):
     def setUp(self):
+        url = reverse_lazy('signup')
+        data = {
+            'username': 'john2',
+            'email': 'john@gmail.com',
+            'password1': 'abcdef123456',
+            'password2': 'abcdef123456'
+        }
+        self.response = self.client.post(url, data)
+        self.url = reverse_lazy('home')
+        self.response = self.client.get(url)
+        self.cadastro_pedido_url = reverse_lazy('cadastro_pedido')
+        self.response = self.client.get(self.cadastro_pedido_url)
         self.moeda = Moeda.objects.create(simbolo="USD", descricao="DOLAR")
         self.prioridade = Prioridade.objects.create(tipo="Alta")
         self.tipo_emb = Tipo_emb.objects.create(descricao="Spare parts")
@@ -102,14 +108,3 @@ class CadastroPedidoSucesso(TestCase):
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
         self.assertContains(response, 'form-group', 19)
-
-
-class LoginRequiredCadastroPedido(TestCase):
-    def setUp(self):
-        self.url = reverse_lazy('cadastro_pedido')
-        self.response = self.client.get(self.url)
-
-        # loginReq
-        # def test_redirection(self):
-        # login_url = reverse_lazy('login')
-        # self.assertRedirects(self.response, '{login_url}?next={url}'.format(login_url=login_url, url=self.url))
