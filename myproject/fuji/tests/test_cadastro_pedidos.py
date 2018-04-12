@@ -90,9 +90,9 @@ class CadastroPedidoSucesso(TestCase):
         }
 
         url = reverse_lazy('cadastro_pedido')
-        homeUrl = reverse_lazy('home')
         response = self.client.post(url, data)
-        self.assertRedirects(response, homeUrl)
+        cadastro_url = reverse_lazy('pedido_detalhes', kwargs={'pk': 1})
+        self.assertRedirects(response, cadastro_url)
 
     def test_cadastro_insucesso(self):
         data = {
