@@ -21,14 +21,14 @@ def item_detalhes(request, pk):
 
 @login_required
 def cadastro_pedido(request):
-    user = User.objects.first()  # TODO: get the currently logged in user
+    #user = User.objects.first()  # TODO: get the currently logged in user
     if request.method == 'POST':
         form = NewOrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-            order.responsavel_fdb = user
+            order.responsavel_fdb = request.user
             order.save()
-            return redirect('home')  # TODO: redirect to the created PO.
+            return redirect('pedido_detalhes', pk=order.pk)  # TODO: redirect to the created PO.
     else:
         form = NewOrderForm()
     return render(request, 'cadastro_pedido.html', {'form': form})
