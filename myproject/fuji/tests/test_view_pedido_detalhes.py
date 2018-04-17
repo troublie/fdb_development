@@ -8,27 +8,30 @@ from ..models import Order, Moeda, Prioridade, Tipo_emb, Fornecedor, Termo, Cust
 
 
 class PedidoDetalhesTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.moeda = Moeda.objects.create(simbolo="USD", descricao="DOLAR")
+        cls.moeda = Moeda.objects.first()
+        cls.prioridade = Prioridade.objects.create(tipo="Alta")
+        cls.prioridade = Prioridade.objects.first()
+        cls.tipo_emb = Tipo_emb.objects.create(descricao="Spareparts")
+        cls.tipo_emb = Tipo_emb.objects.first()
+        cls.fornecedor = Fornecedor.objects.create(nome="Sojitz", endreco="Teste", email_contato="teste@gmail.com",
+                                                   nome_contato="Joao")
+        cls.fornecedor = Fornecedor.objects.first()
+        cls.termo = Termo.objects.create(dias="30")
+        cls.termo = Termo.objects.first()
+        cls.customer = Customer.objects.create(nome="Jabil", endreco="Teste", email_contato="teste2@gmail.com",
+                                               nome_contato="Joao")
+        cls.customer = Customer.objects.first()
+        cls.user = User.objects.create_user(username='john', email='john@doe.com', password='old_password')
+        cls.user = User.objects.first()
+        Order.objects.create(customer=cls.customer, fornecedor=cls.fornecedor, number='123', moeda=cls.moeda,
+                             amount_total='1200', responsavel_fdb=cls.user, tipo_embarque=cls.tipo_emb,
+                             termo_pagto=cls.termo, prioridade=cls.prioridade)
+
     def setUp(self):
-        self.moeda = Moeda.objects.create(simbolo="USD", descricao="DOLAR")
-        self.moeda = Moeda.objects.first()
-        self.prioridade = Prioridade.objects.create(tipo="Alta")
-        self.prioridade = Prioridade.objects.first()
-        self.tipo_emb = Tipo_emb.objects.create(descricao="Spareparts")
-        self.tipo_emb = Tipo_emb.objects.first()
-        self.fornecedor = Fornecedor.objects.create(nome="Sojitz", endreco="Teste", email_contato="teste@gmail.com",
-                                                    nome_contato="Joao")
-        self.fornecedor = Fornecedor.objects.first()
-        self.termo = Termo.objects.create(dias="30")
-        self.termo = Termo.objects.first()
-        self.customer = Customer.objects.create(nome="Jabil", endreco="Teste", email_contato="teste2@gmail.com",
-                                                nome_contato="Joao")
-        self.customer = Customer.objects.first()
-        self.user = User.objects.create_user(username='john', email='john@doe.com', password='old_password')
-        self.user = User.objects.first()
-        Order.objects.create(customer=self.customer, fornecedor=self.fornecedor, number='123', moeda=self.moeda,
-                             amount_total='1200', responsavel_fdb=self.user, tipo_embarque=self.tipo_emb,
-                             termo_pagto=self.termo, prioridade=self.prioridade)
-        url = reverse_lazy('pedido_detalhes', kwargs={'pk': 1})
+        url = reverse_lazy('pedido_detalhes', kwargs={'pk': Order.objects.all().first().pk})
         self.response = self.client.get(url)
 
     def test_pedido_detalhes_success_status_code(self):

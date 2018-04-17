@@ -1,4 +1,4 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.urls import resolve
 from django.test import TestCase
 from ..views import consulta_pn, item_detalhes
@@ -6,8 +6,11 @@ from ..models import Item
 
 
 class ItemListTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.item = Item.objects.create(pn="A5053C", partName="ORING")
+
     def setUp(self):
-        Item.objects.create(pn="A5053C", partName="ORING")
         url = reverse_lazy('consulta_pn')
         self.response = self.client.get(url)
 
@@ -19,7 +22,7 @@ class ItemListTests(TestCase):
         self.assertEquals(view.func, consulta_pn)
 
     def test_item_detalhes_view_success_stauts_code(self):
-        url = reverse_lazy('item_detalhes', kwargs={"pk": 1})
+        url = reverse_lazy('item_detalhes', kwargs={"pk": Item.objects.all().first().pk})
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
@@ -33,5 +36,5 @@ class ItemListTests(TestCase):
         self.assertEquals(view.func, item_detalhes)
 
     def test_item_list_view_contains_link_to_item_detalhes_page(self):
-        item_detalhes_url = reverse_lazy('item_detalhes', kwargs={"pk": 1})
+        item_detalhes_url = reverse_lazy('item_detalhes', kwargs={"pk": Item.objects.all().first().pk})
         self.assertContains(self.response, 'href="{0}"'.format(item_detalhes_url))

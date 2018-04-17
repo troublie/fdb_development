@@ -4,8 +4,12 @@ from ..models import Item
 
 
 class ItemDetalhesTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.item = Item.objects.create(pn="A5053C", partName="ORING")
+        cls.item = Item.objects.first()
+
     def setUp(self):
-        Item.objects.create(pn="A5053C", partName="ORING")
         url = reverse_lazy('consulta_pn')
         self.response = self.client.get(url)
 
