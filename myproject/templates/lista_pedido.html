@@ -1,18 +1,25 @@
 {% extends 'base.html' %}
 {% block breadcrumb %}
+{% load form_tags widget_tweaks %}
 <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
 <li class="breadcrumb-item active">Consulta Pedidos</li>
-<!--<form class="mx-2 my-auto d-inline w-100">-->
-   <!--<div class="input-group">-->
-      <!--<input type="text" class="form-control" placeholder="Buscar número de pedido" id="q">-->
-       <!--<span class="input-group-append">-->
-       <!--<button class="btn btn-outline-secondary" type="button">Buscar</button>-->
-       <!--</span>-->
-    <!--</div>-->
-<!--</form>-->
 {% endblock %}
 
+
 {% block content %}
+
+<div class="form-inline">
+       <span class="input-group-append">
+           <form method="GET" action="/search/">
+           {% for field in form %}
+           {% render_field field class="form-control" %}
+           {% endfor %}
+       <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+               </form>
+       </span>
+</div>
+<br>
+
 <table class="table table-hover">
     <thead class="thead-light">
     <tr>
