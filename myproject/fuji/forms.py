@@ -1,6 +1,6 @@
 from django import forms
-from django.forms import DateInput, DateField
-from django.utils import translation
+from django.forms import DateInput
+
 
 from .models import Order
 
@@ -21,6 +21,12 @@ class NewOrderForm(forms.ModelForm):
             'date_sent_vendor': DateInput(),
             'embarcado_finalizado_em': DateInput()
         }
+
+class SearchForm(forms.Form):
+    q = forms.CharField(max_length=100)
+
+    class Meta:
+        fields = ['q']
 
 
 
