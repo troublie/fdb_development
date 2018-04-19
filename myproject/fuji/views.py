@@ -5,6 +5,7 @@ from .models import Item, Order
 from .forms import NewOrderForm, SearchForm
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 def home(request):
     return render(request, "home.html")
@@ -45,4 +46,7 @@ def pedido_detalhes(request, pk):
     return render(request, 'pedido_detalhes.html', {'order': order})
 
 def resultados(request):
-    return render()
+    form = SearchForm()
+    q = request.GET.get('q')
+    orders = Order.objects.filter(number__contains=q)
+    return render(request, "lista_pedido.html", {'orders': orders, 'form': form})

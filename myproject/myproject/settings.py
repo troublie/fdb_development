@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'fuji',
     'accounts',
     'widget_tweaks',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
