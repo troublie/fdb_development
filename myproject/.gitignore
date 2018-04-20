@@ -3,4 +3,8 @@
 __pycache__
 .DS_Store
 venv
-db.sqlite3
+db.sqlite3
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
