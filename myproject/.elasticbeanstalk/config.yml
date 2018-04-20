@@ -1,6 +1,6 @@
 branch-defaults:
   default:
-    environment: null
+    environment: fuji-dev
     group_suffix: null
 global:
   application_name: fuji
