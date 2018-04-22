@@ -24,7 +24,7 @@ SECRET_KEY = '@&)8tyup+l3!-3fy&t7g-to5mr941q=gbaqujatxr7x56&zqpg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fuji.us-west-2.elasticbeanstalk.com', 'www.fuji.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['fuji.us-west-2.elasticbeanstalk.com', 'www.fuji.us-west-2.elasticbeanstalk.com', '127.0.0.1']
 
 # Application definition
 
