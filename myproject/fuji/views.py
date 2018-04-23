@@ -45,7 +45,7 @@ def pedido_detalhes(request, pk):
     order = get_object_or_404(Order, pk=pk)
     return render(request, 'pedido_detalhes.html', {'order': order})
 
-def resultados(request):
+def search(request):
     form = SearchForm()
     q = request.GET.get('q')
     orders = Order.objects.filter(number__contains=q)
