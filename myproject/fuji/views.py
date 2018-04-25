@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item, Order
-from .forms import NewOrderForm, SearchForm
+from .forms import NewOrderForm, SearchForm, DateForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -37,8 +37,9 @@ def cadastro_pedido(request):
 
 def lista_pedido(request):
     form = SearchForm()
+    date_form = DateForm()
     orders = Order.objects.all()
-    return render(request, "lista_pedido.html", {'orders': orders, 'form': form})
+    return render(request, "lista_pedido.html", {'orders': orders, 'form': form, 'date_form': date_form})
 
 
 def pedido_detalhes(request, pk):
@@ -47,6 +48,7 @@ def pedido_detalhes(request, pk):
 
 def search(request):
     form = SearchForm()
+    date_form = DateForm()
     q = request.GET.get('q')
     orders = Order.objects.filter(number__contains=q)
-    return render(request, "lista_pedido.html", {'orders': orders, 'form': form})
+    return render(request, "lista_pedido.html", {'orders': orders, 'form': form, 'date_form': date_form})
