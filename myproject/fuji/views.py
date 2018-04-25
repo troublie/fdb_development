@@ -52,3 +52,11 @@ def search(request):
     q = request.GET.get('q')
     orders = Order.objects.filter(number__contains=q)
     return render(request, "lista_pedido.html", {'orders': orders, 'form': form, 'date_form': date_form})
+
+def filter(request):
+    form = SearchForm()
+    date_form = DateForm()
+    init_date = request.GET.get('init_date')
+    end_date = request.GET.get('end_date')
+    orders = Order.objects.filter(created_at__range=(init_date,end_date))
+    return render(request, "lista_pedido.html", {'orders': orders, 'form': form, 'date_form': date_form})

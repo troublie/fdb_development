@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^pedido_detalhes/(?P<pk>\d+)/$', views.pedido_detalhes, name='pedido_detalhes'),
     url(r'^lista_pedido/$', views.lista_pedido, name='lista_pedido'),
     url(r'^search', views.search, name='search'),
+    url(r'^filter', views.filter, name='filter'),
 
     url(r'^reset/$',
         auth_views.PasswordResetView.as_view(

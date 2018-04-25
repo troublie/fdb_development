@@ -30,6 +30,6 @@ class SearchForm(forms.Form):
 
 
 class DateForm(forms.Form):
-    initDate = forms.DateField(widget=DateInput())
-    endDate = forms.DateField(widget=DateInput())
+    init_date = forms.DateField(widget=DateInput())
+    end_date = forms.DateField(widget=DateInput())
 
