@@ -1,6 +1,81 @@
 {% extends 'base.html' %}
+{% load form_tags %}
 {% block breadcrumb %}
 <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
 <li class="breadcrumb-item"><a href="{% url 'consulta_pn' %}">Consulta part numbers</a></li>
 <li class="breadcrumb-item active">{{ item.pn }} detalhado</li>
 {% endblock %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th>Part number {{ item.pn }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{% get_verbose_field_name item "pn" %}:</td>
+                <td>{{ item.pn }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "designchange" %}:</td>
+                <td>{{ item.designchange }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "partname" %}:</td>
+                <td>{{ item.partname }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "partnameport" %}:</td>
+                <td>{{ item.partnameport }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "rating" %}:</td>
+                <td>{{ item.rating }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "remark" %}:</td>
+                <td>{{ item.remark }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "information" %}:</td>
+                <td>{{ item.information }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "yenprice" %}:</td>
+                <td>{{ item.yenprice }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "ncm" %}:</td>
+                <td>{{ item.ncm }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "finalidade" %}:</td>
+                <td>{{ item.finalidade }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "material" %}:</td>
+                <td>{{ item.material }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "comentarios" %}:</td>
+                <td>{{ item.comentarios }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "updated_at" %}:</td>
+                <td>{{ item.updated_at }}</td>
+            </tr>
+            <tr>
+                <td>{% get_verbose_field_name item "updated_by" %}:</td>
+                <td>{{ item.updated_by }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

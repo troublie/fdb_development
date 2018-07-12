@@ -3,20 +3,20 @@ from django.contrib.auth.models import User
 
 
 class Item(models.Model):
-    pn = models.CharField(max_length=18, unique=True)
-    designChange = models.CharField(max_length=2, blank=False, null=True)
-    partName = models.CharField(max_length=260, blank=False, null=True)
-    partNamePort = models.CharField(max_length=260, blank=True, null=True)
-    rating = models.CharField(max_length=260, blank=True, null=True)
-    remark = models.CharField(max_length=260, blank=True, null=True)
-    information = models.CharField(max_length=260, blank=True, null=True)
-    yenPrice = models.DecimalField(max_digits=15, decimal_places=0, blank=True, null=True)
-    ncm = models.CharField(max_length=8, blank=True, null=True)
-    finalidade = models.CharField(max_length=900, blank=True, null=True)
-    material = models.CharField(max_length=260, blank=True, null=True)
-    comentarios = models.CharField(max_length=900, blank=True, null=True)
-    updated_at = models.DateTimeField(null=True, auto_now_add=True)
-    updated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+", null=True)
+    pn = models.CharField(max_length=18, unique=True, verbose_name='Part number')
+    designchange = models.CharField(max_length=2, blank=False, null=True, verbose_name='Variação')
+    partname = models.CharField(max_length=260, blank=False, null=True, verbose_name='Part name')
+    partnameport = models.CharField(max_length=260, blank=True, null=True, verbose_name='Part name traduzido')
+    rating = models.CharField(max_length=260, blank=True, null=True, verbose_name='Rating')
+    remark = models.CharField(max_length=260, blank=True, null=True, verbose_name='Remark')
+    information = models.CharField(max_length=260, blank=True, null=True, verbose_name='Info')
+    yenprice = models.DecimalField(max_digits=15, decimal_places=0, blank=True, null=True, verbose_name='Preço')
+    ncm = models.CharField(max_length=8, blank=True, null=True, verbose_name='NCM')
+    finalidade = models.CharField(max_length=900, blank=True, null=True, verbose_name='Finalidade')
+    material = models.CharField(max_length=260, blank=True, null=True, verbose_name='Material')
+    comentarios = models.CharField(max_length=900, blank=True, null=True, verbose_name='Comentários')
+    updated_at = models.DateTimeField(null=True, auto_now_add=True, verbose_name='Atualizado em')
+    updated_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="+", null=True, verbose_name='Atualizado por')
 
     def __str__(self):
         return self.pn
