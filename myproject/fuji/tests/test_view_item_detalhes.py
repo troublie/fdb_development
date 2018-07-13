@@ -6,7 +6,7 @@ from ..models import Item
 class ItemDetalhesTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.item = Item.objects.create(pn="A5053C", partName="ORING")
+        cls.item = Item.objects.create(pn="A5053C", partname="ORING")
         cls.item = Item.objects.first()
 
     def setUp(self):

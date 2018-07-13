@@ -8,7 +8,7 @@ from ..models import Item
 class ItemListTests(TestCase):
     @classmethod
     def setUpTestData(cls):
-        cls.item = Item.objects.create(pn="A5053C", partName="ORING")
+        cls.item = Item.objects.create(pn="A5053C", partname="ORING")
 
     def setUp(self):
         url = reverse_lazy('consulta_pn')
