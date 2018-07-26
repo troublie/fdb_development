@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load form_tags %}
+{% block title %} Pedido {{order.number }} {%endblock title %}
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+<li class="breadcrumb-item"><a href="{% url 'lista_pedido' %}">Consulta Pedidos</a></li>
+<li class="breadcrumb-item active">Edição pedido {{ order.number }}</li>
+{% endblock %}
+
+{% block content %}
+<form method="post" class="col-lg-6 col-md-8 col-sm-10" novalidate>
+    {% csrf_token %}
+    {% include 'includes/form.html' %}
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="{% url 'pedido_detalhes' order.pk %}" class="btn btn-outline-secondary" role="button">Cancelar</a>
+</form>
+{% endblock %}
+

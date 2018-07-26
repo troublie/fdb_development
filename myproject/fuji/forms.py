@@ -7,6 +7,7 @@ from .models import Order
 class DateInput(forms.DateInput):
     input_type = 'date'
 
+
 class NewOrderForm(forms.ModelForm):
     class Meta:
         model = Order
@@ -14,6 +15,19 @@ class NewOrderForm(forms.ModelForm):
                   'number', 'proforma', 'invoice', 'instrucoes', 'embarcado_finalizado_em',
                   'awb', 'tracking', 'moeda', 'amount_total', 'responsavel_fdb', 'tipo_embarque',
                   'termo_pagto', 'vencimento', 'pago', 'prioridade'
+                  ]
+        widgets = {
+            'received_date': DateInput(),
+            'date_sent_vendor': DateInput(),
+            'embarcado_finalizado_em': DateInput()
+        }
+
+
+class UpdateOrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['date_sent_vendor', 'proforma', 'invoice', 'instrucoes', 'embarcado_finalizado_em', 'awb', 'tracking',
+                  'amount_total', 'tipo_embarque', 'termo_pagto', 'pago', 'prioridade'
                   ]
         widgets = {
             'received_date': DateInput(),
@@ -32,4 +46,3 @@ class SearchForm(forms.Form):
 class DateForm(forms.Form):
     init_date = forms.DateField(widget=DateInput())
     end_date = forms.DateField(widget=DateInput())
-

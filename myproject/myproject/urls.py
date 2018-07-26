@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^cadastro_pedido/$', views.cadastro_pedido, name='cadastro_pedido'),
     url(r'^pedido_detalhes/(?P<pk>\d+)/$', views.pedido_detalhes, name='pedido_detalhes'),
+    url(r'^pedido_detalhes/(?P<order_pk>\d+)/edit/$', views.OrderUpdateView.as_view(), name='edit_order'),
     url(r'^lista_pedido/$', views.lista_pedido, name='lista_pedido'),
     url(r'^search', views.search, name='search'),
     url(r'^filter', views.filter, name='filter'),
