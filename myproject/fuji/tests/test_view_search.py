@@ -16,12 +16,12 @@ class SearchViewTest(TestCase):
         cls.tipo_emb = Tipo_emb.objects.create(descricao="Spareparts")
         cls.tipo_emb = Tipo_emb.objects.first()
         cls.fornecedor = Fornecedor.objects.create(nome="Sojitz", endreco="Teste", email_contato="teste@gmail.com",
-                                                    nome_contato="Joao")
+                                                   nome_contato="Joao")
         cls.fornecedor = Fornecedor.objects.first()
         cls.termo = Termo.objects.create(dias="30")
         cls.termo = Termo.objects.first()
         cls.customer = Customer.objects.create(nome="Jabil", endreco="Teste", email_contato="teste2@gmail.com",
-                                                nome_contato="Joao")
+                                               nome_contato="Joao")
         cls.customer = Customer.objects.first()
         cls.user = User.objects.create_user(username='john', email='john@doe.com', password='old_password')
         cls.user = User.objects.first()
@@ -31,7 +31,7 @@ class SearchViewTest(TestCase):
 
     def setUp(self):
         url = reverse_lazy('search')
-        self.response = self.client.get(url,{'q':'123'})
+        self.response = self.client.get(url, {'q': '123'})
 
     def test_search_list_success_status_code(self):
         self.assertEquals(self.response.status_code, 200)
