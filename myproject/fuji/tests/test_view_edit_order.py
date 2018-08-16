@@ -35,7 +35,7 @@ class OrderUpdateViewTestCase(TestCase):
         self.order = Order.objects.create(customer=customer, fornecedor=fornecedor, number='123', moeda=moeda,
                                           amount_total='1200', responsavel_fdb=user, tipo_embarque=tipo_emb,
                                           termo_pagto=termo, prioridade=prioridade, invoice='555')
-        self.url = reverse('edit_order', kwargs={'order_pk': self.order.pk})
+        self.url = reverse('edit_order', kwargs={'order_pk': Order.objects.all().first().pk})
 
 
 class LoginRequiredOrderUpdateViewTests(OrderUpdateViewTestCase):
@@ -89,9 +89,13 @@ class OrderUpdateViewTests(OrderUpdateViewTestCase):
         self.assertContains(self.response, '<input', 9)
         self.assertContains(self.response, '<select', 4)
 
+
 class SuccessfulOrderUpdateViewTests(OrderUpdateViewTestCase):
     def setUp(self):
         super().setUp()
+
+        url_edit = reverse('edit_order', kwargs={'order_pk': Order.objects.all().first().pk})
+        user = User.objects.all().first()
 
         data = {
             'customer': "1", 'received_date': "27/01/2018", 'fornecedor': "1",
@@ -103,7 +107,7 @@ class SuccessfulOrderUpdateViewTests(OrderUpdateViewTestCase):
         }
 
         self.client.login(username=self.username, password=self.password)
-        self.response = self.client.post(self.url, data=data)
+        self.response = self.client.post(url_edit, data=data)
         self.order.refresh_from_db()
 
     def test_redirection(self):
@@ -111,8 +115,9 @@ class SuccessfulOrderUpdateViewTests(OrderUpdateViewTestCase):
         A valid form submission should redirect the user
         '''
         self.order.refresh_from_db()
-        order_details_url = reverse('pedido_detalhes', kwargs={'pk': self.order.pk})
+        order_details_url = reverse('pedido_detalhes', kwargs={'pk': Order.objects.all().first().pk})
         self.assertRedirects(self.response, order_details_url)
+        self.assertEqual(self.response.status_code, 302)
 
     def test_order_changed(self):
         self.order.refresh_from_db()
