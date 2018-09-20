@@ -94,7 +94,7 @@ else:
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': ('fuji'),
         'USER': 'postgres',
-        'PASSWORD': '$kata1902$',
+        'PASSWORD': '$katA1902$',
         'HOST': 'localhost',
         'PORT': '',
     }
